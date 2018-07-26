@@ -1,10 +1,9 @@
 #include<stdio.h>
 #include <stdlib.h>
 
-int check_permissions(char*testdata, char*groudtruth) {
-    for (int i = 0; i < 9; i++) {
-    	if (testdata[i] == '-' && testdata[i] != groudtruth[i]) 
-	{
+int check_permissions(char*testdata, char*groudtruth){
+    for (int i = 0; i < 9; i++){
+    	if (testdata[i] == '-' && testdata[i] != groudtruth[i]){
 	    return 1;
 	}
     }
@@ -12,16 +11,14 @@ int check_permissions(char*testdata, char*groudtruth) {
 }
 
 
-int main(int argc, char** argv) {
-    if (argc != 2 && argc != 3) 
-    {
+int main(int argc, char** argv){
+    if (argc != 2 && argc != 3){
         fprintf(stderr, "USAGE: count_small size [permissions]\n");
         return 1;
     }
     
     int i=2;
-    while(i)
-    {
+    while(i){
         scanf("%*s");
         i--;
     }
@@ -37,19 +34,15 @@ int main(int argc, char** argv) {
     char string9[32];
     int count =0;
     int size = strtol(argv[1],NULL,10);
-    while (scanf("%s %s %s %s %d %s %s %s %s\n", string1, string2, string3, string4, &test_size, string6, string7, string8, string9) != EOF) {
-	if (argc == 2) 
-        {
-	    if (test_size < size)
-	    {
+    while (scanf("%s %s %s %s %d %s %s %s %s\n", string1, string2, string3, string4, &test_size, string6, string7, string8, string9) != EOF){
+	if (argc == 2){
+	    if (test_size < size){
 	        count++;
 	    }
 	} 
-        else 
-	{
+        else{
 	    int permission = check_permissions(string1+1, argv[2]);
-	    if (test_size < size && permission == 0) 
-	    {
+	    if (test_size < size && permission == 0){
 	        count++;
             }
 	}

@@ -3,7 +3,7 @@
 #define SIZE 4
 #define OVERFLOW 5
 
-int main() {
+int main(){
     int index = 0;
     int i;
     int before[SIZE] = {10, 10, 10, 10};
@@ -11,13 +11,13 @@ int main() {
     int after[SIZE] = {10, 10, 10, 10};
 
     printf("Address of the variables:\n");
-    for (index = 0; index < SIZE; index++) {
+    for(index = 0; index < SIZE; index++){
         printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
     }
-    for (index = 0; index < SIZE; index++) {
+    for (index = 0; index < SIZE; index++){
         printf("%lx -> &a[%d]\n", (unsigned long) &a[index], index);
     }
-    for (index = 0; index < SIZE; index++) {
+    for (index = 0; index < SIZE; index++){
         printf("%lx -> &before[%d]\n", (unsigned long) &before[index], index);
     }
     printf("%lx -> &i\n", (unsigned long)&i);
@@ -33,7 +33,7 @@ int main() {
     printf("\n");
 
 
-    for (i = 0; i < OVERFLOW; i++) {
+    for (i = 0; i < OVERFLOW; i++){
         a[i] = i * 10;
         printf("i = %d\n", i);
         printf("before = {%d, %d, %d, %d}\n", before[0], before[1], before[2], before[3]);

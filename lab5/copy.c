@@ -11,7 +11,7 @@
   The only function that should depend on string.h is memset.
  */
 
-char *copy(char *dest, const char *src, int capacity) {
+char *copy(char *dest, const char *src, int capacity){
 	memset(dest,0,capacity);
 	for(int i=0;i<capacity;i++){
 		dest[i] = src[i];
@@ -23,7 +23,7 @@ char *copy(char *dest, const char *src, int capacity) {
 }
 
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv){
     if (argc != 3) {
         fprintf(stderr, "Usage: copy size src\n");
         exit(1);
