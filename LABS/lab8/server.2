@@ -1,0 +1,326 @@
+Script started on Mon 30 Jul 2018 09:54:41 PM EDT
+]0;hanwen@lianghanwen-RESCUER-R720: ~/Documents/CSC209/July30th/liangh30/Lab8[01;32mhanwen@lianghanwen-RESCUER-R720[00m:[01;34m~/Documents/CSC209/July30th/liangh30/Lab8[00m$ gdb b ufserver 
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from bufserver...done.
+(gdb) break main
+Breakpoint 1 at 0x400c17: file bufserver.c, line 18.
+(gdb) run
+Starting program: /home/hanwen/Documents/CSC209/July30th/liangh30/Lab8/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18	int main() {
+(gdb) n
+21	    setbuf(stdout, NULL);
+(gdb) n
+23	    struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) n
+24	    int listenfd = set_up_server_socket(self, 5);
+(gdb) n
+27	        int fd = accept_connection(listenfd);
+(gdb) n
+Waiting for a new connection...
+n New connection accepted from 127.0.0.1:49662
+28	        if (fd < 0) {
+(gdb) n
+33	        char buf[BUFSIZE] = {'\0'};
+(gdb) n
+34	        int inbuf = 0;           // How many bytes currently in buffer?
+(gdb) n
+35	        int room = sizeof(buf);  // How many bytes remaining in buffer?
+(gdb) n
+36	        char *after = buf;       // Pointer to position after the data in buf
+(gdb) n
+39	        while ((nbytes = read(fd, after, room)) > 0) {
+(gdb) n
+41	            inbuf += nbytes;
+(gdb) n[Kdias[K[Ksplau buf
+Undefined command: "displau".  Try "help".
+(gdb) displau buf[1P bufy buf
+1: buf = "A stitch in time\r\nA stitch in "
+(gdb) display inbuf
+2: inbuf = 0
+(gdb) n
+52	            while ((where = find_network_newline(buf, inbuf)) > 0) {
+1: buf = "A stitch in time\r\nA stitch in "
+2: inbuf = 30
+(gdb) n
+58	                buf[where-2] = '\0';
+1: buf = "A stitch in time\r\nA stitch in "
+2: inbuf = 30
+(gdb) n
+59	                printf("Next message: %s\n", buf);
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 30
+(gdb) n
+Next message: A stitch in time
+69	                inbuf -= where;
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 30
+(gdb) n
+70	                char new_line[inbuf];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+72	                    new_line[i] = buf[i+where];
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+71	                for(int i=0;i<inbuf;i++){
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+74	                memset(buf, 0, BUFSIZE);
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = '\000' <repeats 29 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = '\000' <repeats 29 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A", '\000' <repeats 28 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A", '\000' <repeats 28 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A ", '\000' <repeats 27 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A ", '\000' <repeats 27 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A s", '\000' <repeats 26 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A s", '\000' <repeats 26 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A st", '\000' <repeats 25 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A st", '\000' <repeats 25 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A sti", '\000' <repeats 24 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A sti", '\000' <repeats 24 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stit", '\000' <repeats 23 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A stit", '\000' <repeats 23 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stitc", '\000' <repeats 22 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A stitc", '\000' <repeats 22 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stitch", '\000' <repeats 21 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A stitch", '\000' <repeats 21 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stitch ", '\000' <repeats 20 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A stitch ", '\000' <repeats 20 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stitch i", '\000' <repeats 19 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A stitch i", '\000' <repeats 19 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stitch in", '\000' <repeats 18 times>
+2: inbuf = 12
+(gdb) n
+76	                    buf[i] = new_line[i];
+1: buf = "A stitch in", '\000' <repeats 18 times>
+2: inbuf = 12
+(gdb) n
+75	                for(int i = 0; i < inbuf; i++){
+1: buf = "A stitch in ", '\000' <repeats 17 times>
+2: inbuf = 12
+(gdb) n
+52	            while ((where = find_network_newline(buf, inbuf)) > 0) {
+1: buf = "A stitch in ", '\000' <repeats 17 times>
+2: inbuf = 12
+(gdb) n
+80	            after = buf + inbuf;
+1: buf = "A stitch in ", '\000' <repeats 17 times>
+2: inbuf = 12
+(gdb) n
+81	            room = BUFSIZE - inbuf;
+1: buf = "A stitch in ", '\000' <repeats 17 times>
+2: inbuf = 12
+(gdb) n
+39	        while ((nbytes = read(fd, after, room)) > 0) {
+1: buf = "A stitch in ", '\000' <repeats 17 times>
+2: inbuf = 12
+(gdb) n
+41	            inbuf += nbytes;
+1: buf = "A stitch in time\r\nA stitch in "
+2: inbuf = 12
+(gdb) n
+52	            while ((where = find_network_newline(buf, inbuf)) > 0) {
+1: buf = "A stitch in time\r\nA stitch in "
+2: inbuf = 30
+(gdb) n
+58	                buf[where-2] = '\0';
+1: buf = "A stitch in time\r\nA stitch in "
+2: inbuf = 30
+(gdb) n
+59	                printf("Next message: %s\n", buf);
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 30
+(gdb) n
+Next message: A stitch in time
+69	                inbuf -= where;
+1: buf = "A stitch in time\000\nA stitch in "
+2: inbuf = 30
+(gdb) quit
+A debugging session is active.
+
+	Inferior 1 [process 5254] will be killed.
+
+Quit anyway? (y or n) y
+]0;hanwen@lianghanwen-RESCUER-R720: ~/Documents/CSC209/July30th/liangh30/Lab8[01;32mhanwen@lianghanwen-RESCUER-R720[00m:[01;34m~/Documents/CSC209/July30th/liangh30/Lab8[00m$ exit
+exit
+
+Script done on Mon 30 Jul 2018 09:57:24 PM EDT
