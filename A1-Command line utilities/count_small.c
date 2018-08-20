@@ -3,9 +3,9 @@
 
 int check_permissions(char*testdata, char*groudtruth){
     for (int i = 0; i < 9; i++){
-    	if (testdata[i] == '-' && testdata[i] != groudtruth[i]){
-	    return 1;
-	}
+        if (testdata[i] == '-' && testdata[i] != groudtruth[i]){
+            return 1;
+        }
     }
     return 0; 
 }
@@ -35,17 +35,16 @@ int main(int argc, char** argv){
     int count =0;
     int size = strtol(argv[1],NULL,10);
     while (scanf("%s %s %s %s %d %s %s %s %s\n", string1, string2, string3, string4, &test_size, string6, string7, string8, string9) != EOF){
-	if (argc == 2){
-	    if (test_size < size){
-	        count++;
-	    }
-	} 
-        else{
-	    int permission = check_permissions(string1+1, argv[2]);
-	    if (test_size < size && permission == 0){
-	        count++;
-            }
-	}
+		if (argc == 2){
+			if (test_size < size){
+			    count++;
+			}
+		}else{
+			int permission = check_permissions(string1+1, argv[2]);
+			if (test_size < size && permission == 0){
+			    count++;
+		    }
+		}
     }
     printf("%d\n", count);
     return 0;
