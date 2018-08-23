@@ -1,0 +1,4 @@
+csc209 Assignment2
+
+1)Use nftw-file tree walk to find cycle in file system hierarchy 2)Recursively search certain file in a specifi directory 
+3)Use Run-length encoding to compress/uncompress file
