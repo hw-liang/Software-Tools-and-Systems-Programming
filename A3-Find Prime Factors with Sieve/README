@@ -1,3 +1,3 @@
 csc209 Assignment3
 
-Use fork() to find prime factors of composite number.
+Use fork() to find primes or prime factors of composite number. 
