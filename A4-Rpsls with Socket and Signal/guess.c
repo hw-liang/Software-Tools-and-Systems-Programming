@@ -19,6 +19,34 @@ void init_sigint_end(){
   sigaction(SIGINT,&sigint,NULL);
 }
 
+int guess;
+int lowest = 0;
+int higest = 1023;
+// Set SIGUSR1 to show higher guess
+void high(int sig){
+    higest = guess - 1;
+}
+void init_sigusr1(){
+    struct sigaction sigusr1;
+    sigusr1.sa_handler = high;
+    sigusr1.sa_flags = 0;
+    sigemptyset(&sigusr1.sa_mask);
+    sigaddset(&sigusr1.sa_mask, SIGINT);
+    sigaction(SIGUSR1, &sigusr1, NULL);
+}
+// Set SIGUSR2 to show lower guess
+void low(int sig){
+    lowest = guess + 1;
+}
+void init_sigusr2(){
+    struct sigaction sigusr2;
+    sigusr2.sa_handler = low;
+    sigusr2.sa_flags = 0;
+    sigemptyset(&sigusr2.sa_mask);
+    sigaddset(&sigusr2.sa_mask, SIGINT);
+    sigaction(SIGUSR2, &sigusr2, NULL);
+}
+
 int main(){
   int pid = fork();
   if(pid < 0){
@@ -76,33 +104,6 @@ int main(){
     return 0;
   }else{
     init_sigint_end();
-    int guess;
-    int lowest = 0;
-    int higest = 1023;
-    // Set SIGUSR1 to show higher guess
-    void high(int sig){
-      higest = guess - 1;
-		}
-    void init_sigusr1(){
-      struct sigaction sigusr1;
-      sigusr1.sa_handler = high;
-      sigusr1.sa_flags = 0;
-      sigemptyset(&sigusr1.sa_mask);
-      sigaddset(&sigusr1.sa_mask, SIGINT);
-      sigaction(SIGUSR1, &sigusr1, NULL);
-    }
-    // Set SIGUSR2 to show lower guess
-    void low(int sig){
-      lowest = guess + 1;
-    }
-    void init_sigusr2(){
-      struct sigaction sigusr2;
-      sigusr2.sa_handler = low;
-      sigusr2.sa_flags = 0;
-      sigemptyset(&sigusr2.sa_mask);
-      sigaddset(&sigusr2.sa_mask, SIGINT);
-      sigaction(SIGUSR2, &sigusr2, NULL);
-    }
     init_sigusr1();
     init_sigusr2();
 
@@ -127,6 +128,6 @@ int main(){
       }
     }
   }
-	
+
   return 1; // something is wrong if we ever get here!
 }
